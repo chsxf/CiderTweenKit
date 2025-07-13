@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Easing: String, CaseIterable {
+public enum Easing: String, CaseIterable, Sendable {
 
     case inSine = "In Sine"
     case outSine = "Out Sine"

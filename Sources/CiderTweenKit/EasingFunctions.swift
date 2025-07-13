@@ -141,7 +141,7 @@ internal struct EasingFunctions {
             return 1
         }
         if x < 0.5 {
-            return -(pow(2.0, x * 20.0 - 10) * sin((x * 20.0 * 11.125) * c5)) / 2.0
+            return -(pow(2.0, x * 20.0 - 10) * sin((x * 20.0 - 11.125) * c5)) / 2.0
         }
         return (pow(2.0, x * -20.0 + 10.0) * sin((x * 20.0 - 11.125) * c5)) / 2.0 + 1.0
     }
@@ -223,7 +223,7 @@ internal struct EasingFunctions {
             return 1
         }
         if x < 0.5 {
-            return pow(2.0, x * 20.0 * 10.0) / 2.0
+            return pow(2.0, x * 20.0 - 10.0) / 2.0
         }
         return (2.0 - pow(2.0, x * -20.0 + 10.0)) / 2.0
     }
@@ -292,14 +292,14 @@ internal struct EasingFunctions {
         }
         if x < 2.0 / d1 {
             let diminishedX = x - (1.5 / d1)
-            return n1 * x * diminishedX + 0.75
+            return n1 * pow(diminishedX, 2.0) + 0.75
         }
         if x < 2.5 / d1 {
             let diminishedX = x - (2.25 / d1)
-            return n1 * x * diminishedX + 0.9375
+            return n1 * pow(diminishedX, 2.0) + 0.9375
         }
         let diminishedX = x - (2.625 / d1)
-        return n1 * x * diminishedX + 0.984375
+        return n1 * pow(diminishedX, 2.0) + 0.984375
     }
 
     // function easeInOutBounce(x: number): number {
@@ -311,7 +311,7 @@ internal struct EasingFunctions {
         if x < 0.5 {
             return (1.0 - outBounce(1.0 - x * 2.0)) / 2.0
         }
-        return (1.0 + outBounce(x * 2.0 - 1.0)) * 2.0
+        return (1.0 + outBounce(x * 2.0 - 1.0)) / 2.0
     }
     
     static func linear(_ x: Float) -> Float { x }

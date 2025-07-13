@@ -18,7 +18,10 @@ let package = Package(
             name: "CiderTweenKit"),
         .testTarget(
             name: "CiderTweenKitTests",
-            dependencies: ["CiderTweenKit"]
+            dependencies: ["CiderTweenKit"],
+            resources: [
+                .copy("EasingFunctionsTestData.txt")
+            ]
         ),
     ]
 )
