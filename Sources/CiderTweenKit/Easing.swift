@@ -47,8 +47,8 @@ public enum Easing: String, CaseIterable, Sendable {
 
 }
 
-public extension Easing {
-    
+internal extension Easing {
+
     func easingFunction() -> EasingFunction {
         switch self {
             case .inSine: EasingFunctions.inSine
