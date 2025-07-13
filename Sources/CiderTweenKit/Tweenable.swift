@@ -1,0 +1,3 @@
+internal protocol Tweenable: AnyObject {
+
+}
