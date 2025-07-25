@@ -1,6 +1,6 @@
 import Testing
 import Foundation
-@testable import CiderTweenKit
+@testable import CiderKit_Tween
 
 struct Test {
 

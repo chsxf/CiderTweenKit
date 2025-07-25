@@ -1,5 +1,5 @@
 import Testing
-@testable import CiderTweenKit
+@testable import CiderKit_Tween
 
 struct EasingFunctionsTests {
 
