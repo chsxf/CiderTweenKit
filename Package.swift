@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "CiderKit.Tween",
-            targets: ["CiderKit_Tween"]),
+            targets: ["CiderKit.Tween"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -21,7 +21,7 @@ let package = Package(
             name: "CiderKit.Tween"),
         .testTarget(
             name: "CiderKit.Tween.Tests",
-            dependencies: ["CiderKit_Tween"],
+            dependencies: ["CiderKit.Tween"],
             resources: [
                 .copy("EasingFunctionsTestData.txt")
             ]
