@@ -1,61 +1,16 @@
-import Foundation
-
-public actor Tween {
-
-    private let tweenData: any Tweenable
+@dynamicMemberLookup
+public struct Tween<T: Sendable>: Sendable {
     
-    internal let duration: TimeInterval
-    public private(set) var elapsedTime: TimeInterval = 0
+    internal let instance: TweenInstance
+    internal let data: TweenData<T>
     
-    internal let easing: Easing
-
-    public private(set) var isRunning: Bool = true
-    public private(set) var isComplete: Bool = false
-    
-    public init(tweenData: any Tweenable, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async {
-        self.tweenData = tweenData
-        
-        self.duration = duration
-        self.easing = easing
-        
-        if !manualUpdate {
-            await TweenManager.shared.register(tween: self)
-        }
+    internal init(_ instance: TweenInstance, _ data: TweenData<T>) {
+        self.instance = instance
+        self.data = data
     }
     
-    func update(additionalElapsedTime: TimeInterval) {
-        guard !isComplete && additionalElapsedTime > 0 else {
-            return
-        }
-        
-        if elapsedTime == 0 {
-            tweenData.notifyStart()
-        }
-        
-        elapsedTime += additionalElapsedTime
-        if elapsedTime >= duration {
-            elapsedTime = duration
-            isComplete = true
-        }
-        
-        let elapsedTimeRatio = Float(elapsedTime / duration)
-        let easedValue = easing.easingFunction()(elapsedTimeRatio)
-        
-        if isComplete {
-            stop(complete: isComplete)
-        }
-        else {
-            tweenData.apply(easedValue: easedValue)
-        }
+    subscript<Result>(dynamicMember member: KeyPath<TweenData<T>, Result>) -> Result {
+        data[keyPath: member]
     }
     
-    public func stop(complete: Bool = false) {
-        isRunning = false
-        
-        if complete {
-            tweenData.apply(easedValue: 1)
-        }
-        tweenData.finish(complete: complete)
-    }
-
 }

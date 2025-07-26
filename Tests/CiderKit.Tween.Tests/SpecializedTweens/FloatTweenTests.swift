@@ -10,13 +10,13 @@ struct FloatTweenTests {
     private static let timeIncrement: TimeInterval = 1
     
     @Test func tweenTest() async throws {
-        let (tween, tweenData) = await Float.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
+        let tween = await Float.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
         
         let updateTask = Task {
             var currentTime: TimeInterval = Self.timeIncrement
             var expectedValue: Float = 0
             
-            for await updatedFloat in tweenData.onUpdate {
+            for await updatedFloat in tween.onUpdate {
                 let timeRatio = Float(currentTime / Self.duration)
                 let easedValue = EasingFunctions.linear(timeRatio)
                 expectedValue = Self.from + (Self.to - Self.from) * easedValue
@@ -28,7 +28,7 @@ struct FloatTweenTests {
         }
         
         for _ in 1...5 {
-            await tween.update(additionalElapsedTime: Self.timeIncrement)
+            await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
         }
         
         let updateFinalValue = await updateTask.value

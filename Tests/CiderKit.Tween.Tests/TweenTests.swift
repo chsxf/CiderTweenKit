@@ -10,11 +10,11 @@ struct TweenTests {
     private static let timeIncrement: TimeInterval = 1
     
     @Test func eventTest() async throws {
-        let (tween, tweenData) = await Float.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
+        let tween = await Float.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
         
         let startTask = Task {
             var startRegistered = false
-            for await _ in tweenData.onStart {
+            for await _ in tween.onStart {
                 startRegistered = true
             }
             return startRegistered
@@ -23,7 +23,7 @@ struct TweenTests {
         var updateCount: Int = 0
         let updateTask = Task {
             var expectedValue: Float = 0
-            for await updatedFloat in tweenData.onUpdate {
+            for await updatedFloat in tween.onUpdate {
                 updateCount += 1
                 expectedValue = updatedFloat
             }
@@ -32,14 +32,14 @@ struct TweenTests {
         
         let completionTask = Task {
             var completionRegistered = false
-            for await _ in tweenData.onCompletion {
+            for await _ in tween.onCompletion {
                 completionRegistered = true
             }
             return completionRegistered
         }
         
         for _ in 1...5 {
-            await tween.update(additionalElapsedTime: Self.timeIncrement)
+            await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
         }
         
         let startFinalValue = await startTask.value

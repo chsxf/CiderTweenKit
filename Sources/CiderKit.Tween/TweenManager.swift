@@ -7,7 +7,7 @@ public actor TweenManager: GlobalActor {
 
     public static let shared = TweenManager()
 
-    private var runningTweens = [Tween]()
+    private var runningTweenInstances = [TweenInstance]()
     private var displayLinkProxy: DisplayLinkProxy? = nil
     
     #if os(macOS)
@@ -35,9 +35,9 @@ public actor TweenManager: GlobalActor {
     }
     #endif
 
-    func register(tween: Tween) {
-        if !runningTweens.contains(where: { $0 === tween }) {
-            runningTweens.append(tween)
+    func register(tweenInstance: TweenInstance) {
+        if !runningTweenInstances.contains(where: { $0 === tweenInstance }) {
+            runningTweenInstances.append(tweenInstance)
         }
     }
     
@@ -48,13 +48,13 @@ public actor TweenManager: GlobalActor {
         
         Task {
             for await timeInterval in displayLinkProxy.timeIntervals {
-                for i in stride(from: runningTweens.count - 1, to: 0, by: -1) {
-                    let tween = runningTweens[i]
+                for i in stride(from: runningTweenInstances.count - 1, to: 0, by: -1) {
+                    let tween = runningTweenInstances[i]
                     if await tween.isRunning {
                         await tween.update(additionalElapsedTime: timeInterval)
                         
                         if await tween.isComplete {
-                            runningTweens.remove(at: i)
+                            runningTweenInstances.remove(at: i)
                             continue
                         }
                     }
