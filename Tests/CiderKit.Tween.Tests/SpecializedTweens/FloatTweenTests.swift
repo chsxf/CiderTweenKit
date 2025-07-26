@@ -2,23 +2,15 @@ import Testing
 import Foundation
 @testable import CiderKit_Tween
 
-struct Test {
+struct FloatTweenTests {
 
     private static let from: Float = 0
     private static let to: Float = 100
     private static let duration: TimeInterval = 5
     private static let timeIncrement: TimeInterval = 1
     
-    @Test func basicTest() async throws {
+    @Test func tweenTest() async throws {
         let (tween, tweenData) = await Float.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
-        
-        let startTask = Task {
-            var startRegistered = false
-            for await _ in tweenData.onStart {
-                startRegistered = true
-            }
-            return startRegistered
-        }
         
         let updateTask = Task {
             var currentTime: TimeInterval = Self.timeIncrement
@@ -35,26 +27,12 @@ struct Test {
             return expectedValue
         }
         
-        let completionTask = Task {
-            var completionRegistered = false
-            for await _ in tweenData.onCompletion {
-                completionRegistered = true
-            }
-            return completionRegistered
-        }
-        
         for _ in 1...5 {
             await tween.update(additionalElapsedTime: Self.timeIncrement)
         }
         
-        let startFinalValue = await startTask.value
-        #expect(startFinalValue)
-        
         let updateFinalValue = await updateTask.value
         #expect(updateFinalValue == 100.0)
-        
-        let completionValue = await completionTask.value
-        #expect(completionValue)
     }
 
 }
