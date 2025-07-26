@@ -42,6 +42,9 @@ struct TweenTests {
             await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
         }
         
+        // Additional call to update that should do nothing
+        await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
+        
         let startFinalValue = await startTask.value
         #expect(startFinalValue)
         
