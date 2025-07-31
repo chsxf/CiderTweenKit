@@ -27,7 +27,7 @@ public struct TweenData<T: Sendable>: Tweenable {
         onStart = onStartStream
         self.onStartContinuation = onStartContinuation
         
-        let (onUpdateStream, onUpdateContinuation) = AsyncStream<T>.makeStream()
+        let (onUpdateStream, onUpdateContinuation) = AsyncStream<T>.makeStream(bufferingPolicy: .bufferingNewest(0))
         onUpdate = onUpdateStream
         self.onUpdateContinuation = onUpdateContinuation
         
