@@ -3,19 +3,19 @@ import Foundation
 internal func uintTweenTransformer(from: UInt, to: UInt, easedValue: Float) -> UInt {
     let doubleFrom = Double(from)
     let doubleTo = Double(to)
-    
+
     let result = doubleFrom + (doubleTo - doubleFrom) * Double(easedValue)
     return UInt(result.rounded(.towardZero))
 }
 
 public extension UInt {
-    
+
     static func tween(from: UInt, to: UInt, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<UInt> {
         let data = TweenData(from: from, to: to, transformer: uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
         return Tween(instance, data)
     }
-    
+
 }
 
 internal func simd2uintTweenTransformer(from: SIMD2<UInt>, to: SIMD2<UInt>, easedValue: Float) -> SIMD2<UInt> {

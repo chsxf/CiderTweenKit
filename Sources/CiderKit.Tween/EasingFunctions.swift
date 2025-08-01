@@ -2,27 +2,27 @@ import Foundation
 
 // Source: https://easings.net
 internal struct EasingFunctions {
-    
+
     // function easeInSine(x: number): number {
     //   return 1 - Math.cos((x * Math.PI) / 2);
     // }
     static func inSine(_ x: Float) -> Float { 1.0 - cos((x * .pi) / 2.0) }
-    
+
     // function easeOutSine(x: number): number {
     //   return Math.sin((x * Math.PI) / 2);
     // }
     static func outSine(_ x: Float) -> Float { sin((x * .pi) / 2.0) }
-    
+
     // function easeInOutSine(x: number): number {
     //   return -(Math.cos(Math.PI * x) - 1) / 2;
     // }
     static func inOutSine(_ x: Float) -> Float { -(cos(x * .pi) - 1.0) / 2.0 }
-    
+
     // function easeInCubic(x: number): number {
     //   return x * x * x;
     // }
     static func inCubic(_ x: Float) -> Float { pow(x, 3.0) }
-    
+
     // function easeOutCubic(x: number): number {
     //   return 1 - Math.pow(1 - x, 3);
     // }
@@ -112,14 +112,14 @@ internal struct EasingFunctions {
     //       : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
     // }
     static func outElastic(_ x: Float) -> Float {
-        let c4: Float = (.pi * 2.0) / 3.0;
+        let c4: Float = (.pi * 2.0) / 3.0
         if x == 0 {
             return 0
         }
         if x == 1 {
             return 1
         }
-        return pow(2, x * -10.0) * sin((x * 10.0 - 0.75) * c4) + 1;
+        return pow(2, x * -10.0) * sin((x * 10.0 - 0.75) * c4) + 1
     }
 
     // function easeInOutElastic(x: number): number {
@@ -313,7 +313,7 @@ internal struct EasingFunctions {
         }
         return (1.0 + outBounce(x * 2.0 - 1.0)) / 2.0
     }
-    
+
     static func linear(_ x: Float) -> Float { x }
-    
+
 }

@@ -14,7 +14,7 @@ struct TestDataEntry {
 func loadEasingFunctionsTestData() throws -> TestData {
     let dataURL = Bundle.module.url(forResource: "EasingFunctionsTestData", withExtension: "txt")
 
-    let fileContents = try! String(contentsOf: dataURL!)
+    let fileContents = try String(contentsOf: dataURL!)
     let lines = fileContents.split(separator: "\n", omittingEmptySubsequences: true)
 
     var result = TestData()

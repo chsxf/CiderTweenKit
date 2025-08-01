@@ -16,5 +16,5 @@ public extension CGRect {
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
         return Tween(instance, data)
     }
-    
+
 }

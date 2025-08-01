@@ -9,20 +9,20 @@ struct IntTweenTests {
     private static let duration: TimeInterval = 5
     private static let timeIncrement: TimeInterval = 1
     private static let expectedValues = [20, 40, 60, 80, 100]
-    
+
     @Test("Int Tween Test", .tags(.specializedTweenTest))
     func tweenTest() async throws {
         let tween = await Int.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
-        
+
         let updateTask = genericUpdateTask(tween: tween, expectedValues: Self.expectedValues)
-        
+
         let tweenTask = Task {
             for _ in 1...5 {
                 try await Task.sleep(nanoseconds: tweenTaskDelay)
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.to)
     }
@@ -49,7 +49,7 @@ struct IntTweenTests {
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.simd2To)
     }
@@ -76,7 +76,7 @@ struct IntTweenTests {
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.simd3To)
     }
@@ -97,7 +97,7 @@ struct IntTweenTests {
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.simd4To)
     }
@@ -118,7 +118,7 @@ struct IntTweenTests {
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.simd8To)
     }
@@ -139,7 +139,7 @@ struct IntTweenTests {
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.simd16To)
     }
@@ -160,7 +160,7 @@ struct IntTweenTests {
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.simd32To)
     }
@@ -181,7 +181,7 @@ struct IntTweenTests {
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.simd64To)
     }

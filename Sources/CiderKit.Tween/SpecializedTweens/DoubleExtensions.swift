@@ -5,13 +5,13 @@ internal func doubleTweenTransformer(from: Double, to: Double, easedValue: Float
 }
 
 public extension Double {
-    
+
     static func tween(from: Double, to: Double, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<Double> {
         let data = TweenData(from: from, to: to, transformer: doubleTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
         return Tween(instance, data)
     }
-    
+
 }
 
 internal func simd2doubleTweenTransformer(from: SIMD2<Double>, to: SIMD2<Double>, easedValue: Float) -> SIMD2<Double> {

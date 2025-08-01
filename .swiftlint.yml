@@ -1,0 +1,16 @@
+disabled_rules:
+  - statement_position
+
+line_length: 220
+
+excluded:
+  - .build
+
+identifier_name:
+    min_length: 1
+
+cyclomatic_complexity:
+    ignores_case_statements: true
+
+switch_case_alignment:
+    indented_cases: true

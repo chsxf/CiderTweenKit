@@ -9,10 +9,10 @@ struct TweenTests {
     private static let duration: TimeInterval = 5
     private static let timeIncrement: TimeInterval = 1
     private static let updateLoops: Int = 5
-    
+
     @Test func eventTest() async throws {
         let tween = await Float.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
-        
+
         let startTask = Task {
             var startRegistered = false
             for await _ in tween.onStart {
@@ -20,7 +20,7 @@ struct TweenTests {
             }
             return startRegistered
         }
-        
+
         let updateTask = Task {
             var updateCount = 0
             for await _ in tween.onUpdate {
@@ -28,7 +28,7 @@ struct TweenTests {
             }
             return updateCount
         }
-        
+
         let completionTask = Task {
             var completionRegistered = false
             for await _ in tween.onCompletion {
@@ -36,17 +36,17 @@ struct TweenTests {
             }
             return completionRegistered
         }
-        
+
         let tweenTask = Task {
             for _ in 1...Self.updateLoops {
                 try await Task.sleep(nanoseconds: tweenTaskDelay)
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
-            
+
             // Additional call to update that should do nothing
             await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
         }
-        
+
         let (startFinalValue, updateFinalValue, completionValue, _) = try await (startTask.value, updateTask.value, completionTask.value, tweenTask.value)
         #expect(startFinalValue)
         #expect(updateFinalValue == Self.updateLoops)

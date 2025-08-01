@@ -54,7 +54,7 @@ internal extension Easing {
             case .inSine: EasingFunctions.inSine
             case .outSine: EasingFunctions.outSine
             case .inOutSine: EasingFunctions.inOutSine
-                
+
             case .inCubic: EasingFunctions.inCubic
             case .outCubic: EasingFunctions.outCubic
             case .inOutCubic: EasingFunctions.inOutCubic
@@ -94,5 +94,5 @@ internal extension Easing {
             default: EasingFunctions.linear
         }
     }
-    
+
 }

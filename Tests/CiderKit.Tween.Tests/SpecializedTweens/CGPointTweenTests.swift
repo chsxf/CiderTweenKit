@@ -15,20 +15,20 @@ struct CGPointTweenTests {
         CGPoint(x: 40.00000059604645, y: 27.999998927116394),
         Self.to
     ]
-    
+
     @Test("CGPoint Tween Test", .tags(.specializedTweenTest))
     func tweenTest() async throws {
         let tween = await CGPoint.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
-        
+
         let updateTask = genericUpdateTask(tween: tween, expectedValues: Self.expectedValues)
-        
+
         let tweenTask = Task {
             for _ in 1...5 {
                 try await Task.sleep(nanoseconds: tweenTaskDelay)
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.to)
     }

@@ -15,20 +15,20 @@ struct CGSizeTweenTests {
         CGSize(width: 129.99999821186066, height: 419.9999988079071),
         Self.to
     ]
-    
+
     @Test("CGSize Tween Test", .tags(.specializedTweenTest))
     func tweenTest() async throws {
         let tween = await CGSize.tween(from: Self.from, to: Self.to, duration: Self.duration, manualUpdate: true)
 
         let updateTask = genericUpdateTask(tween: tween, expectedValues: Self.expectedValues)
-        
+
         let tweenTask = Task {
             for _ in 1...5 {
                 try await Task.sleep(nanoseconds: tweenTaskDelay)
                 await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
             }
         }
-        
+
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == Self.to)
     }
