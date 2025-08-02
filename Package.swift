@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "CiderKit.Tween",
     platforms: [
-        .macOS(.v14), .iOS(.v12), .tvOS(.v12)
+        .macOS(.v14), .iOS(.v13), .macCatalyst(.v13), .tvOS(.v13), .visionOS(.v1)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
