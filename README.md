@@ -12,7 +12,7 @@ It was primarily designed to work with [CiderKit](https://github.com/chsxf/Cider
 
 # Features
 
-This package provides tweens to animate values of various types with lieanr or non-linear interpolation.
+This package provides tweens to animate values of various types with linear or non-linear interpolation.
 
 The supported types are:
 
