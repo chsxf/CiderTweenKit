@@ -36,6 +36,8 @@ The supported types are:
 
 # Getting Started
 
+[Full documentation](https://chsxf.github.io/CiderKit.Tween/documentation/ciderkit_tween/) | [Sample Project](https://github.com/chsxf/CiderKit.Tween.Sample)
+
 CiderKit.Tween makes heavy use of AsyncStreams. Here is a short usage sample:
 
 ```swift
@@ -52,8 +54,6 @@ Task {
     }
 }
 ```
-
-Full documentation will be available soon. A sample project is [available here](https://github.com/chsxf/CiderKit.Tween.Sample).
 
 # Installation with Swift Package Manager
 
