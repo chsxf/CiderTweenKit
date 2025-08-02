@@ -48,7 +48,7 @@ public actor TweenManager: GlobalActor {
 
         Task {
             for await timeInterval in displayLinkProxy.timeIntervals {
-                for i in stride(from: runningTweenInstances.count - 1, to: 0, by: -1) {
+                for i in stride(from: runningTweenInstances.count - 1, through: 0, by: -1) {
                     let tween = runningTweenInstances[i]
                     if await tween.isRunning {
                         await tween.update(additionalElapsedTime: timeInterval)

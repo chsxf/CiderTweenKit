@@ -10,7 +10,7 @@ class DisplayLinkProxy: @unchecked Sendable {
     public let timeIntervals: AsyncStream<Double>
     private let timeIntervalsContinuation: AsyncStream<Double>.Continuation
 
-    private var currentDisplayLink: CADisplayLink! = nil
+    private var currentDisplayLink: CADisplayLink!
 
     #if os(macOS)
     init(view: NSView) {
@@ -19,6 +19,7 @@ class DisplayLinkProxy: @unchecked Sendable {
         timeIntervalsContinuation = continuation
 
         currentDisplayLink = view.displayLink(target: self, selector: #selector(Self.diaplayLinkCallback(displayLink:)))
+        currentDisplayLink.add(to: .current, forMode: .default)
     }
 
     init(window: NSWindow) {
@@ -27,6 +28,7 @@ class DisplayLinkProxy: @unchecked Sendable {
         timeIntervalsContinuation = continuation
 
         currentDisplayLink = window.displayLink(target: self, selector: #selector(Self.diaplayLinkCallback(displayLink:)))
+        currentDisplayLink.add(to: .current, forMode: .default)
     }
     #else
     init() {
@@ -35,6 +37,7 @@ class DisplayLinkProxy: @unchecked Sendable {
         timeIntervalsContinuation = continuation
 
         currentDisplayLink = CADisplayLink(target: self, selector: #selector(Self.diaplayLinkCallback(displayLink:)))
+        currentDisplayLink.add(to: .current, forMode: .default)
     }
     #endif
 
