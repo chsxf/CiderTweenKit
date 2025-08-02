@@ -27,12 +27,30 @@ The supported types are:
 
 ## Planned Features and Improvements
 
-- [ ] watchOS Support
 - [ ] String specialized tweens (between two strings, with scrambled text, etc.)
+- [ ] SpriteKit specialized tweens
+- [ ] Loops
+- [ ] Sequences
+- [ ] watchOS Support
 
 # Getting Started
 
-TBD
+CiderKit.Tween makes heavy use of AsyncStreams. Here is a short usage sample:
+
+```swift
+// Create a linear tween that goes from 0 to 100 linearly over a period of 5 seconds
+let tween = Float.tween(from: 0, to: 100, duration: 5)
+
+// ...
+
+Task {
+    for await updatedValue in tween.onUpdate {
+        print(updatedValue) // Will print values as the tween updates
+    }
+}
+```
+
+Full documentation will be available soon.
 
 # Installation with Swift Package Manager
 
