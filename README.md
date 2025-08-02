@@ -28,9 +28,10 @@ The supported types are:
 ## Planned Features and Improvements
 
 - [ ] String specialized tweens (between two strings, with scrambled text, etc.)
-- [ ] SpriteKit specialized tweens
+- [ ] [`SpriteKit`](https://developer.apple.com/documentation/spritekit) specialized tweens
 - [ ] Loops
 - [ ] Sequences
+- [ ] Bridge to [`SKAction`](https://developer.apple.com/documentation/spritekit/skaction)
 - [ ] watchOS Support
 
 # Getting Started
@@ -50,7 +51,7 @@ Task {
 }
 ```
 
-Full documentation will be available soon.
+Full documentation will be available soon. A sample project is [available here](https://github.com/chsxf/CiderKit.Tween.Sample).
 
 # Installation with Swift Package Manager
 
