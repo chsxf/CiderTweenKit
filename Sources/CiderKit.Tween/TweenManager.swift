@@ -17,7 +17,7 @@ public actor TweenManager: GlobalActor {
         }
 
         displayLinkProxy = await DisplayLinkProxy(view: view)
-        start()
+        startPollingTimeIntervals()
     }
 
     public func startFrom(window: NSWindow) async {
@@ -26,12 +26,12 @@ public actor TweenManager: GlobalActor {
         }
 
         displayLinkProxy = await DisplayLinkProxy(window: window)
-        start()
+        startPollingTimeIntervals()
     }
     #else
-    private init() async {
+    public func start() async {
         displayLinkProxy = await DisplayLinkProxy()
-        start()
+        startPollingTimeIntervals()
     }
     #endif
 
@@ -41,7 +41,7 @@ public actor TweenManager: GlobalActor {
         }
     }
 
-    private func start() {
+    private func startPollingTimeIntervals() {
         guard let displayLinkProxy else {
             fatalError("TweenManager not ready")
         }
