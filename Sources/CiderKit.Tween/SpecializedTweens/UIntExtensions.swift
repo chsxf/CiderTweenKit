@@ -8,8 +8,17 @@ internal func uintTweenTransformer(from: UInt, to: UInt, easedValue: Float) -> U
     return UInt(result.rounded(.towardZero))
 }
 
+/// Tween-specific extensions
 public extension UInt {
 
+    /// Create a tween between to `UInt` values
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: UInt, to: UInt, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<UInt> {
         let data = TweenData(from: from, to: to, transformer: uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
@@ -29,8 +38,19 @@ internal func simd2uintTweenTransformer(from: SIMD2<UInt>, to: SIMD2<UInt>, ease
     return simdResult
 }
 
+/// Tween-specific extensions
 public extension SIMD2<UInt> {
 
+    /// Create a tween between to `SIMD2<UInt>` values
+    ///
+    /// The tween is applied independently to all elements of the SIMD vector.
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD2<UInt>, to: SIMD2<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD2<UInt>> {
         let data = TweenData(from: from, to: to, transformer: simd2uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
@@ -50,8 +70,19 @@ internal func simd3uintTweenTransformer(from: SIMD3<UInt>, to: SIMD3<UInt>, ease
     return simdResult
 }
 
+/// Tween-specific extensions
 public extension SIMD3<UInt> {
 
+    /// Create a tween between to `SIMD3<UInt>` values
+    ///
+    /// The tween is applied independently to all elements of the SIMD vector.
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD3<UInt>, to: SIMD3<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD3<UInt>> {
         let data = TweenData(from: from, to: to, transformer: simd3uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
@@ -71,8 +102,19 @@ internal func simd4uintTweenTransformer(from: SIMD4<UInt>, to: SIMD4<UInt>, ease
     return simdResult
 }
 
+/// Tween-specific extensions
 public extension SIMD4<UInt> {
 
+    /// Create a tween between to `SIMD4<UInt>` values
+    ///
+    /// The tween is applied independently to all elements of the SIMD vector.
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD4<UInt>, to: SIMD4<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD4<UInt>> {
         let data = TweenData(from: from, to: to, transformer: simd4uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
@@ -92,8 +134,19 @@ internal func simd8uintTweenTransformer(from: SIMD8<UInt>, to: SIMD8<UInt>, ease
     return simdResult
 }
 
+/// Tween-specific extensions
 public extension SIMD8<UInt> {
 
+    /// Create a tween between to `SIMD8<UInt>` values
+    ///
+    /// The tween is applied independently to all elements of the SIMD vector.
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD8<UInt>, to: SIMD8<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD8<UInt>> {
         let data = TweenData(from: from, to: to, transformer: simd8uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
@@ -113,8 +166,19 @@ internal func simd16uintTweenTransformer(from: SIMD16<UInt>, to: SIMD16<UInt>, e
     return simdResult
 }
 
+/// Tween-specific extensions
 public extension SIMD16<UInt> {
 
+    /// Create a tween between to `SIMD16<UInt>` values
+    ///
+    /// The tween is applied independently to all elements of the SIMD vector.
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD16<UInt>, to: SIMD16<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD16<UInt>> {
         let data = TweenData(from: from, to: to, transformer: simd16uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
@@ -134,8 +198,19 @@ internal func simd32uintTweenTransformer(from: SIMD32<UInt>, to: SIMD32<UInt>, e
     return simdResult
 }
 
+/// Tween-specific extensions
 public extension SIMD32<UInt> {
 
+    /// Create a tween between to `SIMD32<UInt>` values
+    ///
+    /// The tween is applied independently to all elements of the SIMD vector.
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD32<UInt>, to: SIMD32<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD32<UInt>> {
         let data = TweenData(from: from, to: to, transformer: simd32uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
@@ -155,8 +230,19 @@ internal func simd64uintTweenTransformer(from: SIMD64<UInt>, to: SIMD64<UInt>, e
     return simdResult
 }
 
+/// Tween-specific extensions
 public extension SIMD64<UInt> {
 
+    /// Create a tween between to `SIMD64<UInt>` values
+    ///
+    /// The tween is applied independently to all elements of the SIMD vector.
+    ///
+    /// - Parameters:
+    ///     - from: Starting value
+    ///     - to: Ending value
+    ///     - duration: Duration in seconds of the tween
+    ///     - easing: ```Easing``` type to apply
+    ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD64<UInt>, to: SIMD64<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD64<UInt>> {
         let data = TweenData(from: from, to: to, transformer: simd64uintTweenTransformer(from:to:easedValue:))
         let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)

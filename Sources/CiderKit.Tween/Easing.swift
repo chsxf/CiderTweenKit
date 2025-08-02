@@ -1,7 +1,14 @@
 import Foundation
 
+/// Easing types
+///
+/// Each easing type is associated with an easing function.
+/// Easing functions specify the rate of change of a parameter over time.
+///
+/// Code of the easing functions of all types but ```custom(_:_:)``` come from the [easings.net](https://easings.net) website.
 public enum Easing: CaseIterable, Sendable, Codable, CustomStringConvertible {
 
+    /// All cases but ```custom(_:_:)```
     public static let allCases: [Easing] = [
         .inSine, .outSine, .inOutSine,
         .inCubic, .outCubic, .inOutCubic,
@@ -16,49 +23,158 @@ public enum Easing: CaseIterable, Sendable, Codable, CustomStringConvertible {
         .linear
     ]
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInSine)
+    ///
+    /// > Note: ```description``` will return `"In Sine"` for this case.
     case inSine
+    /// Implementation details on [easings.net](https://easings.net/#easeOutSine)
+    ///
+    /// > Note: ```description``` will return `"Out Sine"` for this case.
     case outSine
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutSine)
+    ///
+    /// > Note: ```description``` will return `"In Out Sine"` for this case.
     case inOutSine
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInCubic)
+    ///
+    /// > Note: ```description``` will return `"In Cubic"` for this case.
     case inCubic
+    /// Implementation details on [easings.net](https://easings.net/#easeOutCubic)
+    ///
+    /// > Note: ```description``` will return `"Out Cubic"` for this case.
     case outCubic
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutCubic)
+    ///
+    /// > Note: ```description``` will return `"In Out Cubic"` for this case.
     case inOutCubic
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInQuint)
+    ///
+    /// > Note: ```description``` will return `"In Quint"` for this case.
     case inQuint
+    /// Implementation details on [easings.net](https://easings.net/#easeOutQuint)
+    ///
+    /// > Note: ```description``` will return `"Out Quint"` for this case.
     case outQuint
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutQuint)
+    ///
+    /// > Note: ```description``` will return `"In Out Quint"` for this case.
     case inOutQuint
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInCirc)
+    ///
+    /// > Note: ```description``` will return `"In Circ"` for this case.
     case inCirc
+    /// Implementation details on [easings.net](https://easings.net/#easeOutCirc)
+    ///
+    /// > Note: ```description``` will return `"Out Circ"` for this case.
     case outCirc
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutCirc)
+    ///
+    /// > Note: ```description``` will return `"In Out Circ"` for this case.
     case inOutCirc
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInElastic)
+    ///
+    /// > Note: ```description``` will return `"In Elastic"` for this case.
     case inElastic
+    /// Implementation details on [easings.net](https://easings.net/#easeOutElastic)
+    ///
+    /// > Note: ```description``` will return `"Out Elastic"` for this case.
     case outElastic
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutElastic)
+    ///
+    /// > Note: ```description``` will return `"In Out Elastic"` for this case.
     case inOutElastic
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInQuad)
+    ///
+    /// > Note: ```description``` will return `"In Quad"` for this case.
     case inQuad
+    /// Implementation details on [easings.net](https://easings.net/#easeOutQuad)
+    ///
+    /// > Note: ```description``` will return `"Out Quad"` for this case.
     case outQuad
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutQuad)
+    ///
+    /// > Note: ```description``` will return `"In Out Quad"` for this case.
     case inOutQuad
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInQuart)
+    ///
+    /// > Note: ```description``` will return `"In Quart"` for this case.
     case inQuart
+    /// Implementation details on [easings.net](https://easings.net/#easeOutQuart)
+    ///
+    /// > Note: ```description``` will return `"Out Quart"` for this case.
     case outQuart
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutQuart)
+    ///
+    /// > Note: ```description``` will return `"In Out Quart"` for this case.
     case inOutQuart
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInExpo)
+    ///
+    /// > Note: ```description``` will return `"In Expo"` for this case.
     case inExpo
+    /// Implementation details on [easings.net](https://easings.net/#easeOutExpo)
+    ///
+    /// > Note: ```description``` will return `"Out Expo"` for this case.
     case outExpo
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutExpo)
+    ///
+    /// > Note: ```description``` will return `"In Out Expo"` for this case.
     case inOutExpo
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInBack)
+    ///
+    /// > Note: ```description``` will return `"In Back"` for this case.
     case inBack
+    /// Implementation details on [easings.net](https://easings.net/#easeOutBack)
+    ///
+    /// > Note: ```description``` will return `"Out Back"` for this case.
     case outBack
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutBack)
+    ///
+    /// > Note: ```description``` will return `"In Out Back"` for this case.
     case inOutBack
 
+    /// Implementation details on [easings.net](https://easings.net/#easeInBounce)
+    ///
+    /// > Note: ```description``` will return `"In Bounce"` for this case.
     case inBounce
+    /// Implementation details on [easings.net](https://easings.net/#easeOutBounce)
+    ///
+    /// > Note: ```description``` will return `"Out Bounce"` for this case.
     case outBounce
+    /// Implementation details on [easings.net](https://easings.net/#easeInOutBounce)
+    ///
+    /// > Note: ```description``` will return `"In Out Bounce"` for this case.
     case inOutBounce
 
+    /// Implementation details on [easings.net](https://easings.net/#easeLinear)
+    ///
+    /// > Note: ```description``` will return `"Linear"` for this case.
     case linear
+
+    /// Allow the use of a custom easing function
+    ///
+    /// > Warning: This case cannot be encoded and will throw ```EasingError/encodingCustom```
+    ///
+    /// - Parameters:
+    ///     - easingFunction: Custom ```EasingFunction``` to apply
+    ///     - description: Textual description of the applied esaing type
     case custom(_ easingFunction: EasingFunction, _ description: String = "Custom")
 
+    /// Decodes an easing case from its ```description```
+    ///
+    /// For example, `"In Sine"` will be decoded as ```inSine```
+    ///
+    /// > Note: It is not possible to decode ```custom(_:_:)``` as it cannot be encoded in the first place
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    /// - Throws: ```EasingError/unknownEncodedEasing``` if trying to decode an unsupported type, including ```custom(_:_:)```
     public init(from decoder: any Decoder) throws {
         let singleValueContainer = try decoder.singleValueContainer()
         let easingDescription = try singleValueContainer.decode(String.self)
@@ -68,6 +184,12 @@ public enum Easing: CaseIterable, Sendable, Codable, CustomStringConvertible {
         self = easing
     }
 
+    /// Encodes an easing case according to its ```description```
+    ///
+    /// For example, ```inSine``` with be encoded as `"In Sine"`.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    /// - Throws:```EasingError/encodingCustom``` if trying to encode ```custom(_:_:)```
     public func encode(to encoder: any Encoder) throws {
         if case .custom(_, _) = self {
             throw EasingError.encodingCustom
