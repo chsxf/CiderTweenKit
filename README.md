@@ -1,6 +1,6 @@
 # CiderKit.Tween
 
-A pure Swift tweening library complying with Swift 6 Strict Concurency.
+A pure Swift tweening library that complies with Swift 6 Strict Concurrency.
 
 It was primarily designed to work with [CiderKit](https://github.com/chsxf/CiderKit), but it is completely agnostic and can be used within any project.
 
