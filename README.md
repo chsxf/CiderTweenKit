@@ -10,6 +10,30 @@ It was primarily designed to work with [CiderKit](https://github.com/chsxf/Cider
 [![](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev/)
 ![](https://analytics.chsxf.dev/GitHubStats.badge/CiderKig.Tween/README.md) 
 
+# Features
+
+This package provides tweens to animate values of various types with lieanr or non-linear interpolation.
+
+The supported types are:
+
+- `Int` (+ `SIMD2` to `SIMD64` variants)
+- `UInt` (+ `SIMD2` to `SIMD64` variants)
+- `Float` (+ `SIMD2` to `SIMD64` variants)
+- `Double` (+ `SIMD2` to `SIMD64` variants)
+- `CGFloat` 
+- `CGPoint`
+- `CGRect`
+- `CGSize`
+
+## Planned Features and Improvements
+
+- [ ] watchOS Support
+- [ ] String specialized tweens (between two strings, with scrambled text, etc.)
+
+# Getting Started
+
+TBD
+
 # Installation with Swift Package Manager
 
 CiderKit.Tween is available through [Swift Package Manager](https://github.com/apple/swift-package-manager).
@@ -33,6 +57,12 @@ targets: [
 - Then select **Branch** as the **Dependency Rule** with `main` in the associated text field.
 - Then select the project of your choice in the **Add to Project** list.
 - Finally, click the **Add Package** button.
+
+# Support
+
+Development on CiderKit.Tween is still active.
+
+However, support is not guaranteed in any way. [Pull requests](https://github.com/chsxf/CiderKit.Tween/pulls) or [issues](https://github.com/chsxf/CiderKit.Tween/issues) are welcomed but you may wait for some time before getting any answer.
 
 # License
 
