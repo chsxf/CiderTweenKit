@@ -39,6 +39,8 @@ The supported types are:
 CiderKit.Tween makes heavy use of AsyncStreams. Here is a short usage sample:
 
 ```swift
+import CiderKit_Tween
+
 // Create a linear tween that goes from 0 to 100 linearly over a period of 5 seconds
 let tween = Float.tween(from: 0, to: 100, duration: 5)
 
