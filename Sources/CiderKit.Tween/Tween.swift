@@ -9,7 +9,7 @@ public struct Tween<T: Sendable>: Sendable {
         self.data = data
     }
 
-    subscript<Result>(dynamicMember member: KeyPath<TweenData<T>, Result>) -> Result {
+    public subscript<Result>(dynamicMember member: KeyPath<TweenData<T>, Result>) -> Result {
         data[keyPath: member]
     }
 
