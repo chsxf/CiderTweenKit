@@ -1,3 +1,5 @@
+import Foundation
+
 @dynamicMemberLookup
 public struct Tween<T: Sendable>: Sendable {
 
@@ -14,6 +16,14 @@ public struct Tween<T: Sendable>: Sendable {
 
     public subscript<Result>(dynamicMember member: KeyPath<TweenData<T>, Result>) -> Result {
         data[keyPath: member]
+    }
+
+    public func update(additionalElapsedTime: TimeInterval) async {
+        await instance.update(additionalElapsedTime: additionalElapsedTime)
+    }
+
+    public func stop(complete: Bool = false) async {
+        await instance.stop(complete: complete)
     }
 
 }

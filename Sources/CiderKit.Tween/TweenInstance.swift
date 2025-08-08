@@ -1,18 +1,18 @@
 import Foundation
 
-public actor TweenInstance {
+internal actor TweenInstance {
 
     private let tweenData: any Tweenable
 
     internal let duration: TimeInterval
-    public private(set) var elapsedTime: TimeInterval = 0
+    internal private(set) var elapsedTime: TimeInterval = 0
 
     internal let easing: Easing
 
-    public private(set) var isRunning: Bool = true
-    public private(set) var isComplete: Bool = false
+    internal private(set) var isRunning: Bool = true
+    internal private(set) var isComplete: Bool = false
 
-    public init(tweenData: any Tweenable, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async {
+    internal init(tweenData: any Tweenable, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async {
         self.tweenData = tweenData
 
         self.duration = duration
@@ -23,7 +23,7 @@ public actor TweenInstance {
         }
     }
 
-    func update(additionalElapsedTime: TimeInterval) {
+    internal func update(additionalElapsedTime: TimeInterval) {
         guard !isComplete && additionalElapsedTime > 0 else {
             return
         }
@@ -49,7 +49,7 @@ public actor TweenInstance {
         }
     }
 
-    public func stop(complete: Bool = false) {
+    internal func stop(complete: Bool = false) {
         isRunning = false
 
         if complete {
