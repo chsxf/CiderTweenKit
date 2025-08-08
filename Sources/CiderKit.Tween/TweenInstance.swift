@@ -53,7 +53,8 @@ public actor TweenInstance {
         isRunning = false
 
         if complete {
-            tweenData.apply(easedValue: 1)
+            let easedValue = easing.easingFunction()(1)
+            tweenData.apply(easedValue: easedValue)
         }
         tweenData.finish(complete: complete)
     }

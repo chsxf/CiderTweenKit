@@ -1,1 +1,1 @@
-public typealias EasingFunction = (Float) -> Float
+public typealias EasingFunction = @Sendable (Float) -> Float

@@ -1,53 +1,128 @@
 import Foundation
 
-public enum Easing: String, CaseIterable, Sendable, Codable {
+public enum Easing: CaseIterable, Sendable, Codable, CustomStringConvertible {
 
-    case inSine = "In Sine"
-    case outSine = "Out Sine"
-    case inOutSine = "In Out Sine"
+    public static let allCases: [Easing] = [
+        .inSine, .outSine, .inOutSine,
+        .inCubic, .outCubic, .inOutCubic,
+        .inQuint, .outQuint, .inOutQuint,
+        .inCirc, .outCirc, .inOutCirc,
+        .inElastic, .outElastic, .inOutElastic,
+        .inQuad, .outQuad, .inOutQuad,
+        .inQuart, .outQuart, .inOutQuart,
+        .inExpo, .outExpo, .inOutExpo,
+        .inBack, .outBack, .inOutBack,
+        .inBounce, .outBounce, .inOutBounce,
+        .linear
+    ]
 
-    case inCubic = "In Cubic"
-    case outCubic = "Out Cubic"
-    case inOutCubic = "In Out Cubic"
+    case inSine
+    case outSine
+    case inOutSine
 
-    case inQuint = "In Quint"
-    case outQuint = "Out Quint"
-    case inOutQuint = "In Out Quint"
+    case inCubic
+    case outCubic
+    case inOutCubic
 
-    case inCirc = "In Circ"
-    case outCirc = "Out Circ"
-    case inOutCirc = "In Out Circ"
+    case inQuint
+    case outQuint
+    case inOutQuint
 
-    case inElastic = "In Elastic"
-    case outElastic = "Out Elastic"
-    case inOutElastic = "In Out Elastic"
+    case inCirc
+    case outCirc
+    case inOutCirc
 
-    case inQuad = "In Quad"
-    case outQuad = "Out Quad"
-    case inOutQuad = "In Out Quad"
+    case inElastic
+    case outElastic
+    case inOutElastic
 
-    case inQuart = "In Quart"
-    case outQuart = "Out Quart"
-    case inOutQuart = "In Out Quart"
+    case inQuad
+    case outQuad
+    case inOutQuad
 
-    case inExpo = "In Expo"
-    case outExpo = "Out Expo"
-    case inOutExpo = "In Out Expo"
+    case inQuart
+    case outQuart
+    case inOutQuart
 
-    case inBack = "In Back"
-    case outBack = "Out Back"
-    case inOutBack = "In Out Back"
+    case inExpo
+    case outExpo
+    case inOutExpo
 
-    case inBounce = "In Bounce"
-    case outBounce = "Out Bounce"
-    case inOutBounce = "In Out Bounce"
+    case inBack
+    case outBack
+    case inOutBack
 
-    case linear = "Linear"
-    case custom = "Custom"
+    case inBounce
+    case outBounce
+    case inOutBounce
 
-}
+    case linear
+    case custom(_ easingFunction: EasingFunction, _ description: String = "Custom")
 
-public extension Easing {
+    public init(from decoder: any Decoder) throws {
+        let singleValueContainer = try decoder.singleValueContainer()
+        let easingDescription = try singleValueContainer.decode(String.self)
+        guard let easing = descriptionToEasingMap[easingDescription] else {
+            throw EasingError.unknownEncodedEasing
+        }
+        self = easing
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+        if case .custom(_, _) = self {
+            throw EasingError.encodingCustom
+        }
+
+        var singleValueContainer = encoder.singleValueContainer()
+        try singleValueContainer.encode(description)
+    }
+
+    public var description: String {
+        switch self {
+            case .inSine: return "In Sine"
+            case .outSine: return "Out Sine"
+            case .inOutSine: return "In Out Sine"
+
+            case .inCubic: return "In Cubic"
+            case .outCubic: return "Out Cubic"
+            case .inOutCubic: return "In Out Cubic"
+
+            case .inQuint: return "In Quint"
+            case .outQuint: return "Out Quint"
+            case .inOutQuint: return "In Out Quint"
+
+            case .inCirc: return "In Circ"
+            case .outCirc: return "Out Circ"
+            case .inOutCirc: return "In Out Circ"
+
+            case .inElastic: return "In Elastic"
+            case .outElastic: return "Out Elastic"
+            case .inOutElastic: return "In Out Elastic"
+
+            case .inQuad: return "In Quad"
+            case .outQuad: return "Out Quad"
+            case .inOutQuad: return "In Out Quad"
+
+            case .inQuart: return "In Quart"
+            case .outQuart: return "Out Quart"
+            case .inOutQuart: return "In Out Quart"
+
+            case .inExpo: return "In Expo"
+            case .outExpo: return "Out Expo"
+            case .inOutExpo: return "In Out Expo"
+
+            case .inBack: return "In Back"
+            case .outBack: return "Out Back"
+            case .inOutBack: return "In Out Back"
+
+            case .inBounce: return "In Bounce"
+            case .outBounce: return "Out Bounce"
+            case .inOutBounce: return "In Out Bounce"
+
+            case .linear: return "Linear"
+            case .custom(_, let description): return description
+        }
+    }
 
     func easingFunction() -> EasingFunction {
         switch self {
@@ -91,8 +166,53 @@ public extension Easing {
             case .outBounce: EasingFunctions.outBounce
             case .inOutBounce: EasingFunctions.inOutBounce
 
+            case .custom(let easingFunction, _): easingFunction
             default: EasingFunctions.linear
         }
     }
 
 }
+
+fileprivate let descriptionToEasingMap: [String: Easing] = [
+    "In Sine": .inSine,
+    "Out Sine": .outSine,
+    "In Out Sine": .inOutSine,
+
+    "In Cubic": .inCubic,
+    "Out Cubic": .outCubic,
+    "In Out Cubic": .inOutCubic,
+
+    "In Quint": .inQuint,
+    "Out Quint": .outQuint,
+    "In Out Quint": .inOutQuint,
+
+    "In Circ": .inCirc,
+    "Out Circ": .outCirc,
+    "In Out Circ": .inOutCirc,
+
+    "In Elastic": .inElastic,
+    "Out Elastic": .outElastic,
+    "In Out Elastic": .inOutElastic,
+
+    "In Quad": .inQuad,
+    "Out Quad": .outQuad,
+    "In Out Quad": .inOutQuad,
+
+    "In Quart": .inQuart,
+    "Out Quart": .outQuart,
+    "In Out Quart": .inOutQuart,
+
+    "In Expo": .inExpo,
+    "Out Expo": .outExpo,
+    "In Out Expo": .inOutExpo,
+
+    "In Back": .inBack,
+    "Out Back": .outBack,
+    "In Out Back": .inOutBack,
+
+    "In Bounce": .inBounce,
+    "Out Bounce": .outBounce,
+    "In Out Bounce": .inOutBounce,
+
+    "Linear": .linear
+]

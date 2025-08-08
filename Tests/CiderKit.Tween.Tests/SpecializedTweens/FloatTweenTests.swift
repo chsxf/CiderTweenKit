@@ -192,4 +192,24 @@ struct FloatTweenTests {
         #expect(updateFinalValue == Self.simd64To)
     }
 
+    static func inverseLinear(_ value: Float) -> Float {
+        1.0 - value
+    }
+
+    @Test func customEasingTest() async throws {
+        let tween = await Float.tween(from: Self.from, to: Self.to, duration: Self.duration, easing: .custom(Self.inverseLinear(_:)), manualUpdate: true)
+
+        let updateTask = genericUpdateTask(tween: tween, expectedValues: [ 80, 60.000004, 39.999996, 19.999998, Self.from ])
+
+        let tweenTask = Task {
+            for _ in 1...5 {
+                try await Task.sleep(nanoseconds: tweenTaskDelay)
+                await tween.instance.update(additionalElapsedTime: Self.timeIncrement)
+            }
+        }
+
+        let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
+        #expect(updateFinalValue == Self.from)
+    }
+
 }

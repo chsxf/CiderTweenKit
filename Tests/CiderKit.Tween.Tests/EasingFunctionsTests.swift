@@ -9,17 +9,9 @@ struct EasingFunctionsTests {
         testData = try loadEasingFunctionsTestData()
     }
 
-    static func testableEasingCases() -> [Easing] {
-        var allCases = Easing.allCases
-        allCases.removeAll { $0 == .custom }
-        return allCases
-    }
-
-    @Test(arguments: Self.testableEasingCases())
+    @Test(arguments: Easing.allCases)
     func easingFunctionTest(easing: Easing) async throws {
-        let key = "\(easing)"
-
-        let testData = try #require(testData[key])
+        let testData = try #require(testData[easing.description])
         let easingFunction = easing.easingFunction()
 
         for entry in testData {
