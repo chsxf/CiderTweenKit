@@ -12,7 +12,7 @@ internal actor TweenInstance {
     internal private(set) var isRunning: Bool = true
     internal private(set) var isComplete: Bool = false
 
-    internal init(tweenData: any Tweenable, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async {
+    internal init(tweenData: any Tweenable, duration: TimeInterval, easing: Easing, manualUpdate: Bool) async {
         self.tweenData = tweenData
 
         self.duration = duration

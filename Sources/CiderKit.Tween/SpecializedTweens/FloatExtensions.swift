@@ -17,8 +17,7 @@ public extension Float {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: Float, to: Float, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<Float> {
         let data = TweenData(from: from, to: to, transformer: floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
@@ -42,8 +41,7 @@ public extension SIMD2<Float> {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD2<Float>, to: SIMD2<Float>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD2<Float>> {
         let data = TweenData(from: from, to: to, transformer: simd2floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
@@ -67,8 +65,7 @@ public extension SIMD3<Float> {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD3<Float>, to: SIMD3<Float>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD3<Float>> {
         let data = TweenData(from: from, to: to, transformer: simd3floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
@@ -92,8 +89,7 @@ public extension SIMD4<Float> {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD4<Float>, to: SIMD4<Float>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD4<Float>> {
         let data = TweenData(from: from, to: to, transformer: simd4floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
@@ -117,8 +113,7 @@ public extension SIMD8<Float> {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD8<Float>, to: SIMD8<Float>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD8<Float>> {
         let data = TweenData(from: from, to: to, transformer: simd8floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
@@ -142,8 +137,7 @@ public extension SIMD16<Float> {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD16<Float>, to: SIMD16<Float>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD16<Float>> {
         let data = TweenData(from: from, to: to, transformer: simd16floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
@@ -167,8 +161,7 @@ public extension SIMD32<Float> {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD32<Float>, to: SIMD32<Float>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD32<Float>> {
         let data = TweenData(from: from, to: to, transformer: simd32floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
@@ -192,8 +185,7 @@ public extension SIMD64<Float> {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD64<Float>, to: SIMD64<Float>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD64<Float>> {
         let data = TweenData(from: from, to: to, transformer: simd64floatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }

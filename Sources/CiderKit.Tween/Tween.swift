@@ -9,11 +9,11 @@ public struct Tween<T: Sendable>: Sendable {
     public var isRunning: Bool { get async { await instance.isRunning } }
     public var isComplete: Bool { get async { await instance.isComplete } }
 
-    internal init(_ instance: TweenInstance, _ data: TweenData<T>) {
-        self.instance = instance
+    public init(data: TweenData<T>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async {
         self.data = data
+        instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
-
+    
     public subscript<Result>(dynamicMember member: KeyPath<TweenData<T>, Result>) -> Result {
         data[keyPath: member]
     }

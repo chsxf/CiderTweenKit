@@ -17,8 +17,7 @@ public extension CGFloat {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: CGFloat, to: CGFloat, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<CGFloat> {
         let data = TweenData(from: from, to: to, transformer: cgfloatTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }

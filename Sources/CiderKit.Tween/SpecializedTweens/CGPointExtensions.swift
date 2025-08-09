@@ -22,8 +22,7 @@ public extension CGPoint {
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: CGPoint, to: CGPoint, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<CGPoint> {
         let data = TweenData(from: from, to: to, transformer: cgpointTweenTransformer(from:to:easedValue:))
-        let instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
-        return Tween(instance, data)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
