@@ -1,6 +1,6 @@
 import Combine
 
-public protocol Tweenable: Sendable {
+protocol Tweenable: Sendable {
 
     associatedtype TweenableData: Sendable
 

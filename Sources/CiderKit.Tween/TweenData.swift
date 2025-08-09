@@ -1,7 +1,7 @@
 import Foundation
 @preconcurrency import Combine
 
-public struct TweenData<T: Sendable>: Tweenable {
+public struct TweenData<T: Sendable> {
 
     public typealias TransformerFunction = @Sendable (T, T, Float) -> T
 
@@ -54,3 +54,5 @@ public struct TweenData<T: Sendable>: Tweenable {
     }
 
 }
+
+extension TweenData: Tweenable { }
