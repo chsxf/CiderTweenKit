@@ -1,9 +1,9 @@
 import Foundation
 
-internal func cgsizeTweenTransformer(from: CGSize, to: CGSize, easedValue: Float) -> CGSize {
+internal func cgsizeTweenInterpolator(from: CGSize, to: CGSize, easedValue: Float) -> CGSize {
     CGSize(
-        width: cgfloatTweenTransformer(from: from.width, to: to.width, easedValue: easedValue),
-        height: cgfloatTweenTransformer(from: from.height, to: to.height, easedValue: easedValue)
+        width: cgfloatTweenInterpolator(from: from.width, to: to.width, easedValue: easedValue),
+        height: cgfloatTweenInterpolator(from: from.height, to: to.height, easedValue: easedValue)
     )
 }
 
@@ -21,7 +21,7 @@ public extension CGSize {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: CGSize, to: CGSize, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<CGSize> {
-        let data = TweenData(from: from, to: to, transformer: cgsizeTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: cgsizeTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 

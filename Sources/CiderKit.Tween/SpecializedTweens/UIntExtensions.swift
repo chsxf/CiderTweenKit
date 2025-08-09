@@ -1,6 +1,6 @@
 import Foundation
 
-internal func uintTweenTransformer(from: UInt, to: UInt, easedValue: Float) -> UInt {
+internal func uintTweenInterpolator(from: UInt, to: UInt, easedValue: Float) -> UInt {
     let doubleFrom = Double(from)
     let doubleTo = Double(to)
 
@@ -20,13 +20,13 @@ public extension UInt {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: UInt, to: UInt, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<UInt> {
-        let data = TweenData(from: from, to: to, transformer: uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
 
-internal func simd2uintTweenTransformer(from: SIMD2<UInt>, to: SIMD2<UInt>, easedValue: Float) -> SIMD2<UInt> {
+internal func simd2uintTweenInterpolator(from: SIMD2<UInt>, to: SIMD2<UInt>, easedValue: Float) -> SIMD2<UInt> {
     let simdDoubleFrom = SIMD2<Double>(from)
     let simdDoubleTo = SIMD2<Double>(to)
     let simdDoubleResult = (simdDoubleTo - simdDoubleFrom) * Double(easedValue)
@@ -51,13 +51,13 @@ public extension SIMD2<UInt> {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD2<UInt>, to: SIMD2<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD2<UInt>> {
-        let data = TweenData(from: from, to: to, transformer: simd2uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: simd2uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
 
-internal func simd3uintTweenTransformer(from: SIMD3<UInt>, to: SIMD3<UInt>, easedValue: Float) -> SIMD3<UInt> {
+internal func simd3uintTweenInterpolator(from: SIMD3<UInt>, to: SIMD3<UInt>, easedValue: Float) -> SIMD3<UInt> {
     let simdDoubleFrom = SIMD3<Double>(from)
     let simdDoubleTo = SIMD3<Double>(to)
     let simdDoubleResult = (simdDoubleTo - simdDoubleFrom) * Double(easedValue)
@@ -82,13 +82,13 @@ public extension SIMD3<UInt> {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD3<UInt>, to: SIMD3<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD3<UInt>> {
-        let data = TweenData(from: from, to: to, transformer: simd3uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: simd3uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
 
-internal func simd4uintTweenTransformer(from: SIMD4<UInt>, to: SIMD4<UInt>, easedValue: Float) -> SIMD4<UInt> {
+internal func simd4uintTweenInterpolator(from: SIMD4<UInt>, to: SIMD4<UInt>, easedValue: Float) -> SIMD4<UInt> {
     let simdDoubleFrom = SIMD4<Double>(from)
     let simdDoubleTo = SIMD4<Double>(to)
     let simdDoubleResult = (simdDoubleTo - simdDoubleFrom) * Double(easedValue)
@@ -113,13 +113,13 @@ public extension SIMD4<UInt> {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD4<UInt>, to: SIMD4<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD4<UInt>> {
-        let data = TweenData(from: from, to: to, transformer: simd4uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: simd4uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
 
-internal func simd8uintTweenTransformer(from: SIMD8<UInt>, to: SIMD8<UInt>, easedValue: Float) -> SIMD8<UInt> {
+internal func simd8uintTweenInterpolator(from: SIMD8<UInt>, to: SIMD8<UInt>, easedValue: Float) -> SIMD8<UInt> {
     let simdDoubleFrom = SIMD8<Double>(from)
     let simdDoubleTo = SIMD8<Double>(to)
     let simdDoubleResult = (simdDoubleTo - simdDoubleFrom) * Double(easedValue)
@@ -144,13 +144,13 @@ public extension SIMD8<UInt> {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD8<UInt>, to: SIMD8<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD8<UInt>> {
-        let data = TweenData(from: from, to: to, transformer: simd8uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: simd8uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
 
-internal func simd16uintTweenTransformer(from: SIMD16<UInt>, to: SIMD16<UInt>, easedValue: Float) -> SIMD16<UInt> {
+internal func simd16uintTweenInterpolator(from: SIMD16<UInt>, to: SIMD16<UInt>, easedValue: Float) -> SIMD16<UInt> {
     let simdDoubleFrom = SIMD16<Double>(from)
     let simdDoubleTo = SIMD16<Double>(to)
     let simdDoubleResult = (simdDoubleTo - simdDoubleFrom) * Double(easedValue)
@@ -175,13 +175,13 @@ public extension SIMD16<UInt> {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD16<UInt>, to: SIMD16<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD16<UInt>> {
-        let data = TweenData(from: from, to: to, transformer: simd16uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: simd16uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
 
-internal func simd32uintTweenTransformer(from: SIMD32<UInt>, to: SIMD32<UInt>, easedValue: Float) -> SIMD32<UInt> {
+internal func simd32uintTweenInterpolator(from: SIMD32<UInt>, to: SIMD32<UInt>, easedValue: Float) -> SIMD32<UInt> {
     let simdDoubleFrom = SIMD32<Double>(from)
     let simdDoubleTo = SIMD32<Double>(to)
     let simdDoubleResult = (simdDoubleTo - simdDoubleFrom) * Double(easedValue)
@@ -206,13 +206,13 @@ public extension SIMD32<UInt> {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD32<UInt>, to: SIMD32<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD32<UInt>> {
-        let data = TweenData(from: from, to: to, transformer: simd32uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: simd32uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 
 }
 
-internal func simd64uintTweenTransformer(from: SIMD64<UInt>, to: SIMD64<UInt>, easedValue: Float) -> SIMD64<UInt> {
+internal func simd64uintTweenInterpolator(from: SIMD64<UInt>, to: SIMD64<UInt>, easedValue: Float) -> SIMD64<UInt> {
     let simdDoubleFrom = SIMD64<Double>(from)
     let simdDoubleTo = SIMD64<Double>(to)
     let simdDoubleResult = (simdDoubleTo - simdDoubleFrom) * Double(easedValue)
@@ -237,7 +237,7 @@ public extension SIMD64<UInt> {
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
     static func tween(from: SIMD64<UInt>, to: SIMD64<UInt>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<SIMD64<UInt>> {
-        let data = TweenData(from: from, to: to, transformer: simd64uintTweenTransformer(from:to:easedValue:))
+        let data = TweenData(from: from, to: to, interpolator: simd64uintTweenInterpolator(from:to:easedValue:))
         return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
 

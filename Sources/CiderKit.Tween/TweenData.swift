@@ -18,7 +18,7 @@ public struct TweenData<T: Sendable> {
     public let from: T
     /// End value
     public let to: T
-    internal let transformer: TransformerFunction
+    internal let interpolator: InterpolatorFunction
 
     private let onStartContinuation: AsyncStream<Void>.Continuation
     /// This `AsyncStream` will produce one `Void` value when the tween starts
@@ -39,11 +39,11 @@ public struct TweenData<T: Sendable> {
     /// - Parameters:
     ///     - from: Start value
     ///     - to: End value
-    ///     - transformer: Function that will compute the interpolation
-    public init(from: T, to: T, transformer: @escaping TransformerFunction) {
+    ///     - interpolator: Function that will compute the interpolation
+    public init(from: T, to: T, interpolator: @escaping InterpolatorFunction) {
         self.from = from
         self.to = to
-        self.transformer = transformer
+        self.interpolator = interpolator
 
         let (onStartStream, onStartContinuation) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingNewest(0))
         onStart = onStartStream
@@ -64,7 +64,7 @@ public struct TweenData<T: Sendable> {
     }
 
     internal func apply(easedValue: Float) {
-        let current = transformer(from, to, easedValue)
+        let current = interpolator(from, to, easedValue)
         onUpdateContinuation.yield(current)
     }
 

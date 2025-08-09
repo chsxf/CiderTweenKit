@@ -17,7 +17,7 @@ public struct Tween<T: Sendable>: Sendable {
     /// Initializer
     ///
     /// - Parameters:
-    ///     - data: Data for the tween (start and end values, and transformer function)
+    ///     - data: Data for the tween (start and end values, and interpolation function)
     ///     - duration: Duration in seconds of the tween
     ///     - easing: Easing type (defaults to ```Easing/linear```
     ///     - manualUpdate: If set, the tween won't be animated automatically and you will be resposible for calling ```update(additionalElapsedTime:)```
