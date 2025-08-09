@@ -10,7 +10,7 @@ internal func cgsizeTweenTransformer(from: CGSize, to: CGSize, easedValue: Float
 /// Tween-specific extensions
 public extension CGSize {
 
-    /// Create a tween between to `CGSize` values
+    /// Create a tween between two `CGSize` values
     ///
     /// The tween is applied independently to the `width` and `height` values of `CGSize`.
     ///

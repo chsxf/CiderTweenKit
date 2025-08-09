@@ -12,7 +12,7 @@ internal func cgrectTweenTransformer(from: CGRect, to: CGRect, easedValue: Float
 /// Tween-specific extensions
 public extension CGRect {
 
-    /// Create a tween between to `CGRect` values
+    /// Create a tween between two `CGRect` values
     ///
     /// The tween is applied independently to the `minX`, `minY`, `width`, and `height` values of `CGRect`.
     ///

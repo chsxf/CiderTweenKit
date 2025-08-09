@@ -7,7 +7,7 @@ internal func floatTweenTransformer(from: Float, to: Float, easedValue: Float) -
 /// Tween-specific extensions
 public extension Float {
 
-    /// Create a tween between to `Float` values
+    /// Create a tween between two `Float` values
     ///
     /// - Parameters:
     ///     - from: Starting value
@@ -29,7 +29,7 @@ internal func simd2floatTweenTransformer(from: SIMD2<Float>, to: SIMD2<Float>, e
 /// Tween-specific extensions
 public extension SIMD2<Float> {
 
-    /// Create a tween between to `SIMD2<Float>` values
+    /// Create a tween between two `SIMD2<Float>` values
     ///
     /// The tween is applied independently to all elements of the SIMD vector.
     ///
@@ -53,7 +53,7 @@ internal func simd3floatTweenTransformer(from: SIMD3<Float>, to: SIMD3<Float>, e
 /// Tween-specific extensions
 public extension SIMD3<Float> {
 
-    /// Create a tween between to `SIMD3<Float>` values
+    /// Create a tween between two `SIMD3<Float>` values
     ///
     /// The tween is applied independently to all elements of the SIMD vector.
     ///
@@ -77,7 +77,7 @@ internal func simd4floatTweenTransformer(from: SIMD4<Float>, to: SIMD4<Float>, e
 /// Tween-specific extensions
 public extension SIMD4<Float> {
 
-    /// Create a tween between to `SIMD4<Float>` values
+    /// Create a tween between two `SIMD4<Float>` values
     ///
     /// The tween is applied independently to all elements of the SIMD vector.
     ///
@@ -101,7 +101,7 @@ internal func simd8floatTweenTransformer(from: SIMD8<Float>, to: SIMD8<Float>, e
 /// Tween-specific extensions
 public extension SIMD8<Float> {
 
-    /// Create a tween between to `SIMD8<Float>` values
+    /// Create a tween between two `SIMD8<Float>` values
     ///
     /// The tween is applied independently to all elements of the SIMD vector.
     ///
@@ -125,7 +125,7 @@ internal func simd16floatTweenTransformer(from: SIMD16<Float>, to: SIMD16<Float>
 /// Tween-specific extensions
 public extension SIMD16<Float> {
 
-    /// Create a tween between to `SIMD16<Float>` values
+    /// Create a tween between two `SIMD16<Float>` values
     ///
     /// The tween is applied independently to all elements of the SIMD vector.
     ///
@@ -149,7 +149,7 @@ internal func simd32floatTweenTransformer(from: SIMD32<Float>, to: SIMD32<Float>
 /// Tween-specific extensions
 public extension SIMD32<Float> {
 
-    /// Create a tween between to `SIMD32<Float>` values
+    /// Create a tween between two `SIMD32<Float>` values
     ///
     /// The tween is applied independently to all elements of the SIMD vector.
     ///
@@ -173,7 +173,7 @@ internal func simd64floatTweenTransformer(from: SIMD64<Float>, to: SIMD64<Float>
 /// Tween-specific extensions
 public extension SIMD64<Float> {
 
-    /// Create a tween between to `SIMD64<Float>` values
+    /// Create a tween between two `SIMD64<Float>` values
     ///
     /// The tween is applied independently to all elements of the SIMD vector.
     ///

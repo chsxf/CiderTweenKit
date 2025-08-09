@@ -7,7 +7,7 @@ internal func cgfloatTweenTransformer(from: CGFloat, to: CGFloat, easedValue: Fl
 /// Tween-specific extensions
 public extension CGFloat {
 
-    /// Create a tween between to `CGFloat` values
+    /// Create a tween between two `CGFloat` values
     ///
     /// - Parameters:
     ///     - from: Starting value

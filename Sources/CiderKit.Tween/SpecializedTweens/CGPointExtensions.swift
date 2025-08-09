@@ -10,7 +10,7 @@ internal func cgpointTweenTransformer(from: CGPoint, to: CGPoint, easedValue: Fl
 /// Tween-specific extensions
 public extension CGPoint {
 
-    /// Create a tween between to `CGPoint` values
+    /// Create a tween between two `CGPoint` values
     ///
     /// The tween is applied independently to the `x` and `y` values of `CGPoint`.
     ///
