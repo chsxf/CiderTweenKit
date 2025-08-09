@@ -1,5 +1,4 @@
 import Foundation
-@preconcurrency import Combine
 
 public struct TweenData<T: Sendable> {
 
