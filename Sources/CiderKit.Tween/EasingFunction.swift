@@ -1,6 +1,6 @@
 /// Specify the rate of change of a parameter over time.
 ///
-/// The function will receive a value between 0 and 1, and will produce a transformed value.
+/// Easing functions receive a value between 0 and 1, and produce a transformed value.
 ///
 /// > Note: The transformed value does not need to be confined between 0 and 1.
 ///
