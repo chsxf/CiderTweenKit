@@ -18,7 +18,7 @@ public struct TweenData<T: Sendable>: Tweenable {
     private let onCompletionContinuation: AsyncStream<Void>.Continuation
     public let onCompletion: AsyncStream<Void>
 
-    init(from: T, to: T, transformer: @escaping TransformerFunction) {
+    public init(from: T, to: T, transformer: @escaping TransformerFunction) {
         self.from = from
         self.to = to
         self.transformer = transformer
