@@ -24,4 +24,6 @@
 /// > ```swift
 /// > static func reverseLinear(_ x: Float) -> Float { 1.0 - x }
 /// > ```
-public typealias EasingFunction = @Sendable (Float) -> Float
+///
+/// - Parameter x: Value between 0 and 1
+public typealias EasingFunction = @Sendable (_ x: Float) -> Float
