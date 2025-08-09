@@ -25,7 +25,7 @@ public struct Tween<T: Sendable>: Sendable {
         self.data = data
         instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
-    
+
     /// Dymamic accessor for members of ```TweenData```.
     public subscript<Result>(dynamicMember member: KeyPath<TweenData<T>, Result>) -> Result {
         data[keyPath: member]

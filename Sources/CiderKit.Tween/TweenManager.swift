@@ -55,7 +55,7 @@ public actor TweenManager: GlobalActor {
         startPollingTimeIntervals()
         #endif
     }
-    
+
     func register(tweenInstance: TweenInstance) {
         if !runningTweenInstances.contains(where: { $0 === tweenInstance }) {
             runningTweenInstances.append(tweenInstance)

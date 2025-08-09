@@ -191,7 +191,7 @@ public enum Easing: CaseIterable, Sendable, Codable, CustomStringConvertible {
     /// - Parameter encoder: The encoder to write data to.
     /// - Throws:```EasingError/encodingCustom``` if trying to encode ```custom(_:_:)```
     public func encode(to encoder: any Encoder) throws {
-        if case .custom(_, _) = self {
+        if case .custom = self {
             throw EasingError.encodingCustom
         }
 
@@ -295,7 +295,7 @@ public enum Easing: CaseIterable, Sendable, Codable, CustomStringConvertible {
 
 }
 
-fileprivate let descriptionToEasingMap: [String: Easing] = [
+private let descriptionToEasingMap: [String: Easing] = [
     "In Sine": .inSine,
     "Out Sine": .outSine,
     "In Out Sine": .inOutSine,
