@@ -246,7 +246,7 @@ public enum Easing: CaseIterable, Sendable, Codable, CustomStringConvertible {
         }
     }
 
-    func easingFunction() -> EasingFunction {
+    public func easingFunction() -> EasingFunction {
         switch self {
             case .inSine: EasingFunctions.inSine
             case .outSine: EasingFunctions.outSine
