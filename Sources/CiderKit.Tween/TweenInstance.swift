@@ -3,6 +3,7 @@ import Foundation
 internal actor TweenInstance {
 
     private let tweenData: any Tweenable
+    private let manualUpdate: Bool
 
     internal let duration: TimeInterval
     internal private(set) var elapsedTime: TimeInterval = 0
@@ -14,6 +15,7 @@ internal actor TweenInstance {
 
     internal init(tweenData: any Tweenable, duration: TimeInterval, easing: Easing, manualUpdate: Bool) async {
         self.tweenData = tweenData
+        self.manualUpdate = manualUpdate
 
         self.duration = duration
         self.easing = easing
@@ -23,7 +25,7 @@ internal actor TweenInstance {
         }
     }
 
-    internal func update(additionalElapsedTime: TimeInterval) {
+    internal func update(additionalElapsedTime: TimeInterval) async {
         guard !isComplete && additionalElapsedTime > 0 else {
             return
         }
@@ -42,14 +44,14 @@ internal actor TweenInstance {
         let easedValue = easing.easingFunction()(elapsedTimeRatio)
 
         if isComplete {
-            stop(complete: isComplete)
+            await stop(complete: isComplete)
         }
         else {
             tweenData.apply(easedValue: easedValue)
         }
     }
 
-    internal func stop(complete: Bool = false) {
+    internal func stop(complete: Bool = false) async {
         isRunning = false
 
         if complete {
@@ -57,6 +59,10 @@ internal actor TweenInstance {
             tweenData.apply(easedValue: easedValue)
         }
         tweenData.finish(complete: complete)
+        
+        if !manualUpdate {
+            await TweenManager.shared.unregister(tweenInstance: self)
+        }
     }
 
 }
