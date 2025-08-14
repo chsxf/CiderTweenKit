@@ -8,7 +8,7 @@ struct StringTweenTests {
     func increasingTweenTest() async throws {
         let from = ""
         let to = "A nice text"
-        
+
         let tween = await String.tween(from: from, to: to, duration: 10, manualUpdate: true)
 
         let updateTask = genericUpdateTask(tween: tween, expectedValues: [
@@ -45,12 +45,12 @@ struct StringTweenTests {
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == to)
     }
-    
+
     @Test("Decreasing String Tween Test", .tags(.specializedTweenTest))
     func decreasingTweenTest() async throws {
         let from = "A nice text"
         let to = ""
-        
+
         let tween = await String.tween(from: from, to: to, duration: 10, manualUpdate: true)
 
         let updateTask = genericUpdateTask(tween: tween, expectedValues: [
@@ -73,7 +73,7 @@ struct StringTweenTests {
             "A",
             "A",
             "",
-            "",
+            ""
         ])
 
         let tweenTask = Task {
@@ -86,12 +86,12 @@ struct StringTweenTests {
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == to)
     }
-    
+
     @Test("Decreasing From Longer String Tween Test", .tags(.specializedTweenTest))
     func decreasingFromLongerTweenTest() async throws {
         let from = "The longer text to start from"
         let to = "A nice text"
-        
+
         let tween = await String.tween(from: from, to: to, duration: 10, manualUpdate: true)
 
         let updateTask = genericUpdateTask(tween: tween, expectedValues: [
@@ -127,12 +127,12 @@ struct StringTweenTests {
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == to)
     }
-    
+
     @Test("Increasing Scrambled String Tween Test", .tags(.specializedTweenTest))
     func increasingScrambledTweenTest() async throws {
         let from = ""
         let to = "A nice text"
-        
+
         let tween = await String.tween(from: from, to: to, duration: 10, scramble: true, scrambleCharacters: "-", manualUpdate: true)
 
         let updateTask = genericUpdateTask(tween: tween, expectedValues: [
@@ -169,12 +169,12 @@ struct StringTweenTests {
         let (updateFinalValue, _) = try await (updateTask.value, tweenTask.value)
         #expect(updateFinalValue == to)
     }
-    
+
     @Test("Deacreasing Scrambled String Tween Test", .tags(.specializedTweenTest))
     func decreasingScrambledTweenTest() async throws {
         let from = "-----------------"
         let to = "A nice text"
-        
+
         let tween = await String.tween(from: from, to: to, duration: 10, scramble: true, scrambleCharacters: "-", manualUpdate: true)
 
         let updateTask = genericUpdateTask(tween: tween, expectedValues: [

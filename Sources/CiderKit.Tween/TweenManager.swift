@@ -18,7 +18,7 @@ public actor TweenManager: GlobalActor {
     private var displayLinkProxy: DisplayLinkProxy?
 
     internal var runningTweenInstanceCount: Int { runningTweenInstances.count }
-    
+
     /// Starts the `TweenManager` by getting a `CADisplayLink` instance from an `NSView`. Available on macOS only.
     ///
     /// - Parameter view: View from which to get the `CADisplayLink` instance
@@ -67,7 +67,7 @@ public actor TweenManager: GlobalActor {
     func unregister(tweenInstance: TweenInstance) {
         runningTweenInstances.removeAll { $0 === tweenInstance }
     }
-    
+
     func updateTweens(additionalElapsedTime: TimeInterval) async {
         for i in stride(from: runningTweenInstances.count - 1, through: 0, by: -1) {
             let tween = runningTweenInstances[i]
@@ -78,7 +78,7 @@ public actor TweenManager: GlobalActor {
             await Task.yield()
         }
     }
-    
+
     private func startPollingTimeIntervals() {
         guard let displayLinkProxy else {
             fatalError("TweenManager not ready")

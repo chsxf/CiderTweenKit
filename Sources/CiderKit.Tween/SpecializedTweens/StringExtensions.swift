@@ -1,22 +1,22 @@
 import Foundation
 
-fileprivate let defaultScrambleCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+private let defaultScrambleCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
-fileprivate func parametrizedStringTweenInterpolator(scrambled: Bool, scrambleCharacters: String?) -> TweenData<String>.InterpolatorFunction {
+private func parametrizedStringTweenInterpolator(scrambled: Bool, scrambleCharacters: String?) -> TweenData<String>.InterpolatorFunction {
     let sc = scrambleCharacters ?? defaultScrambleCharacters
     return { from, to, easedValue in
         let toLength = to.count
         let revealedStringLength = intTweenInterpolator(from: 0, to: toLength, easedValue: easedValue)
-        
+
         let fromLength = scrambled ? max(from.count, to.count) : from.count
         let toStart = to.startIndex
         if fromLength <= revealedStringLength {
             return String(to[..<to.index(toStart, offsetBy: revealedStringLength)])
         }
-        
+
         let generatedStringLength = intTweenInterpolator(from: fromLength, to: toLength, easedValue: easedValue)
         let revealed = to[..<to.index(toStart, offsetBy: revealedStringLength)]
-        
+
         if scrambled {
             let scrambledLength = generatedStringLength - revealedStringLength
             let scrambledPart = String((0..<scrambledLength).map { _ in sc.randomElement()! })
@@ -31,7 +31,7 @@ fileprivate func parametrizedStringTweenInterpolator(scrambled: Bool, scrambleCh
 }
 
 public extension String {
-    
+
     /// Create a tween between two `String` values
     ///
     /// Characters from the end value are revealed progressively and the tween progresses.
@@ -79,5 +79,5 @@ public extension String {
         let tweenData = TweenData(from: from, to: to, interpolator: interpolator)
         return await Tween(data: tweenData, duration: duration, easing: easing, manualUpdate: manualUpdate)
     }
-    
+
 }

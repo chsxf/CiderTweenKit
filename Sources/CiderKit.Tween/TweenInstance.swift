@@ -59,7 +59,7 @@ internal actor TweenInstance {
             tweenData.apply(easedValue: easedValue)
         }
         tweenData.finish(complete: complete)
-        
+
         if !manualUpdate {
             await TweenManager.shared.unregister(tweenInstance: self)
         }
