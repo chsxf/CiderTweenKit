@@ -6,7 +6,7 @@ It was primarily designed to work with [CiderKit](https://github.com/chsxf/Cider
 
 ![](https://img.shields.io/badge/Platforms-macOS%2014%2B%20%7C%20iOS%2013%2B%20%7C%20iPadOS%2013%2B%20%7C%20tvOS%2013%2B%20%7C%20visionOS%201%2B-orange)
 ![](https://img.shields.io/badge/Swift-6.2%20%7C%206.1%20%7C%206.0-orange)
-![](https://github.com/chsxf/CiderCSSKit/actions/workflows/swift.yml/badge.svg)
+[![Lint, Build & Test](https://github.com/chsxf/CiderKit.Tween/actions/workflows/swift.yml/badge.svg)](https://github.com/chsxf/CiderKit.Tween/actions/workflows/swift.yml)
 [![](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev/)
 
 # Features
