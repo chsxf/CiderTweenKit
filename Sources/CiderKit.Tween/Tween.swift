@@ -13,6 +13,8 @@ public struct Tween<T: Sendable>: Sendable {
     public var isRunning: Bool { get async { await instance.isRunning } }
     /// Indicates if the tween has completed or not
     public var isComplete: Bool { get async { await instance.isComplete } }
+    /// Indicates how many times has elapsed during the tween. For looping tweens, this indicates the elapsed time inside a loop and not the overall elapsed time.
+    public var elpasedTime: TimeInterval { get async { await instance.elapsedTime } }
 
     /// Initializer
     ///
@@ -21,9 +23,10 @@ public struct Tween<T: Sendable>: Sendable {
     ///     - duration: Duration in seconds of the tween
     ///     - easing: Easing type (defaults to ```Easing/linear```
     ///     - manualUpdate: If set, the tween won't be animated automatically and you will be resposible for calling ```update(additionalElapsedTime:)```
-    public init(data: TweenData<T>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async {
+    ///     - loopingType: Defines how the tween loops. Defaults to `.none`
+    public init(data: TweenData<T>, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false, loopingType: LoopingType = .none) async {
         self.data = data
-        instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
+        instance = await TweenInstance(tweenData: data, duration: duration, easing: easing, manualUpdate: manualUpdate, loopingType: loopingType)
     }
 
     /// Dymamic accessor for members of ```TweenData```.

@@ -74,10 +74,11 @@ public extension String {
     ///     - scrambleCharacters: Pool of characters to use as scramble replacement. If `nil`, a pool containing lower-case and upper-case letters, and digits is used
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
-    static func tween(from: String, to: String, duration: TimeInterval, scramble: Bool = false, scrambleCharacters: String? = nil, easing: Easing = Easing.linear, manualUpdate: Bool = false) async -> Tween<String> {
+    ///     - loopingType: Defines if and how the tween will loop. Defaults to `.none`
+    static func tween(from: String, to: String, duration: TimeInterval, scramble: Bool = false, scrambleCharacters: String? = nil, easing: Easing = Easing.linear, manualUpdate: Bool = false, loopingType: LoopingType = .none) async -> Tween<String> {
         let interpolator = parametrizedStringTweenInterpolator(scrambled: scramble, scrambleCharacters: scrambleCharacters)
         let tweenData = TweenData(from: from, to: to, interpolator: interpolator)
-        return await Tween(data: tweenData, duration: duration, easing: easing, manualUpdate: manualUpdate)
+        return await Tween(data: tweenData, duration: duration, easing: easing, manualUpdate: manualUpdate, loopingType: loopingType)
     }
 
 }

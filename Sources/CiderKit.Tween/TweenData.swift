@@ -30,6 +30,10 @@ public struct TweenData<T: Sendable> {
     /// This `AsyncStream` will produce one value every time the tween progresses
     public let onUpdate: AsyncStream<T>
 
+    private let onLoopCompletionContinuation: AsyncStream<UInt>.Continuation
+    /// This `AsyncStream` will procude one value every time a loop completes. No value is produced if the tween doesn't loop.
+    public let onLoopCompletion: AsyncStream<UInt>
+
     private let onCompletionContinuation: AsyncStream<Void>.Continuation
     /// This `AsyncStream` will produce one `Void` value when the tween completes
     public let onCompletion: AsyncStream<Void>
@@ -45,17 +49,10 @@ public struct TweenData<T: Sendable> {
         self.to = to
         self.interpolator = interpolator
 
-        let (onStartStream, onStartContinuation) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingNewest(0))
-        onStart = onStartStream
-        self.onStartContinuation = onStartContinuation
-
-        let (onUpdateStream, onUpdateContinuation) = AsyncStream<T>.makeStream(bufferingPolicy: .bufferingNewest(0))
-        onUpdate = onUpdateStream
-        self.onUpdateContinuation = onUpdateContinuation
-
-        let (onCompletionStream, onCompletionContinuation) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingNewest(0))
-        onCompletion = onCompletionStream
-        self.onCompletionContinuation = onCompletionContinuation
+        (onStart, onStartContinuation) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingNewest(0))
+        (onUpdate, onUpdateContinuation) = AsyncStream<T>.makeStream(bufferingPolicy: .bufferingNewest(0))
+        (onLoopCompletion, onLoopCompletionContinuation) = AsyncStream<UInt>.makeStream(bufferingPolicy: .bufferingNewest(0))
+        (onCompletion, onCompletionContinuation) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingNewest(0))
     }
 
     internal func notifyStart() {
@@ -68,10 +65,17 @@ public struct TweenData<T: Sendable> {
         onUpdateContinuation.yield(current)
     }
 
+    internal func notifyLoopCompletion(loopNumber: UInt) {
+        onLoopCompletionContinuation.yield(loopNumber)
+    }
+
     internal func finish(complete: Bool) {
-        onCompletionContinuation.yield()
+        if complete {
+            onCompletionContinuation.yield()
+        }
 
         onUpdateContinuation.finish()
+        onLoopCompletionContinuation.finish()
         onCompletionContinuation.finish()
     }
 

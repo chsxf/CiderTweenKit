@@ -7,6 +7,7 @@ protocol Tweenable: Sendable {
 
     func notifyStart()
     func apply(easedValue: Float)
+    func notifyLoopCompletion(loopNumber: UInt)
     func finish(complete: Bool)
 
 }

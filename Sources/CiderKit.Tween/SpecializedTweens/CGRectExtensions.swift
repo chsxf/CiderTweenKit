@@ -22,9 +22,10 @@ public extension CGRect {
     ///     - duration: Duration in seconds of the tween
     ///     - easing: ```Easing``` type to apply
     ///     - manualUpdate: If set, the tween won't be automatically updated and you will be responsible for calling the ```Tween/update(additionalElapsedTime:)``` method to make it progress
-    static func tween(from: CGRect, to: CGRect, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false) async -> Tween<CGRect> {
+    ///     - loopingType: Defines if and how the tween will loop. Defaults to `.none`
+    static func tween(from: CGRect, to: CGRect, duration: TimeInterval, easing: Easing = .linear, manualUpdate: Bool = false, loopingType: LoopingType = .none) async -> Tween<CGRect> {
         let data = TweenData(from: from, to: to, interpolator: cgrectTweenInterpolator(from:to:easedValue:))
-        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate)
+        return await Tween(data: data, duration: duration, easing: easing, manualUpdate: manualUpdate, loopingType: loopingType)
     }
 
 }
