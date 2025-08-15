@@ -1,3 +1,4 @@
+import Foundation
 #if os(macOS)
 import AppKit
 #endif
@@ -19,19 +20,18 @@ public actor TweenManager: GlobalActor {
 
     internal var runningTweenInstanceCount: Int { runningTweenInstances.count }
 
+#if os(macOS)
     /// Starts the `TweenManager` by getting a `CADisplayLink` instance from an `NSView`. Available on macOS only.
     ///
     /// - Parameter view: View from which to get the `CADisplayLink` instance
     @available(macOS 14, *)
     public func startFrom(view: NSView) async {
-        #if os(macOS)
         guard displayLinkProxy == nil else {
             fatalError("TweenManager already initialized")
         }
 
         displayLinkProxy = await DisplayLinkProxy(view: view)
         startPollingTimeIntervals()
-        #endif
     }
 
     /// Starts the `TweenManager` by getting a `CADisplayLink` instance from an `NSWindow`. Available on macOS only.
@@ -39,15 +39,14 @@ public actor TweenManager: GlobalActor {
     /// - Parameter window: Window from which to get the `CADisplayLink` instance
     @available(macOS 14, *)
     public func startFrom(window: NSWindow) async {
-        #if os(macOS)
         guard displayLinkProxy == nil else {
             fatalError("TweenManager already initialized")
         }
 
         displayLinkProxy = await DisplayLinkProxy(window: window)
         startPollingTimeIntervals()
-        #endif
     }
+#endif
 
     /// Starts the `TweenManager`.  Available on platforms other than macOS.
     @available(iOS 13, tvOS 13, macCatalyst 13, visionOS 1, *)
