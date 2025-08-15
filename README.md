@@ -24,15 +24,16 @@ The supported types are:
 - `CGPoint`
 - `CGRect`
 - `CGSize`
+- `String` (with optional scrambled text)
 
 ## Planned Features and Improvements
 
-- [ ] String specialized tweens (between two strings, with scrambled text, etc.)
 - [ ] [`SpriteKit`](https://developer.apple.com/documentation/spritekit) specialized tweens
 - [ ] Loops
 - [ ] Sequences
 - [ ] Bridge to [`SKAction`](https://developer.apple.com/documentation/spritekit/skaction)
 - [ ] watchOS Support
+- [X] String specialized tweens (between two strings, with scrambled text, etc.)
 
 # Getting Started
 
