@@ -5,7 +5,7 @@ A pure Swift tweening library that complies with Swift 6 Strict Concurrency.
 It was primarily designed to work with [CiderKit](https://github.com/chsxf/CiderKit), but it is completely agnostic and can be used within any project.
 
 ![](https://img.shields.io/badge/Platform-macOS%2014%2B%20%7C%20iOS%2013%2B%20%7C%20iPadOS%2013%2B%20%7C%20tvOS%2013%2B%20%7C%20visionOS%201%2B-orange)
-![](https://img.shields.io/badge/Swift-6-orange)
+![](https://img.shields.io/badge/Swift-6.2%2B%20%7C%206.1%2B%20%7C%206.0-orange)
 ![](https://github.com/chsxf/CiderCSSKit/actions/workflows/swift.yml/badge.svg)
 [![](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev/)
 ![](https://analytics.chsxf.dev/GitHubStats.badge/CiderKig.Tween/README.md) 
