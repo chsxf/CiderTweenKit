@@ -36,6 +36,7 @@ Built-in extensions are available for the following types:
 - `CGPoint`
 - `CGRect`
 - `CGSize`
+- `String` (with optional scrambled text)
 
 ## License
 
